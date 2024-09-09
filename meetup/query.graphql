@@ -1,0 +1,45 @@
+query ($eventId: ID) {
+  event(id: $eventId) {
+    title
+    group {
+      proNetwork {
+        id
+        name
+      }
+    }
+    rsvpEventQuestion {
+      id
+      question
+      required
+      answer
+    }
+    rsvpSurveySettings {
+      questions {
+        questionId
+        type
+        required
+        text
+      }
+    }
+    tickets(input: { first: 200 }) {
+      count
+      edges {
+        node {
+          updatedAt
+          createdAt
+          status
+          quantity
+          user {
+            name
+            username
+            id
+          }
+          answer {
+            questionId
+            text
+          }
+        }
+      }
+    }
+  }
+}
